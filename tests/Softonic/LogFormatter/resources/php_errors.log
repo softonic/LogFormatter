@@ -1,0 +1,9 @@
+[2012-05-10 08:34:19] Uncaught TestException(0): Test error message in /var/www/test.php on line 119
+Stack trace:
+#0: /var/www/test.php(119): test
+[2012-05-10 09:13:24] Php User Warning Empty string found in {% t %} block in /var/www/T.php on line 86
+[2012-05-10 09:13:24] Php User Warning Empty string found in {% t %} block in /var/www/T.php on line 88
+[2012-05-10 09:13:24] Php Notice: Undefined variable: test in /var/www/T.php on line 88
+[2012-05-10 08:34:19] Uncaught TestException(0): Test error message in /var/www/test.php on line 119
+Stack trace:
+#0: /var/www/test.php(119): test
