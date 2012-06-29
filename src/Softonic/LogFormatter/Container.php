@@ -74,11 +74,9 @@ class Container extends \Pimple
 	 */
 	protected function prepareProcessor()
 	{
-		$this['error_processor'] = $this->share(
-			function( $container ){
-				return new $container['error_processor_class']( $container );
-			}
-		);
+		$this['error_processor'] = function( $container ){
+			return new $container['error_processor_class']( $container );
+		};
 	}
 
 	/**

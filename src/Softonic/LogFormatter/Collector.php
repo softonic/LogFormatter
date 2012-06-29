@@ -38,6 +38,13 @@ class Collector
 	protected $container;
 
 	/**
+	 * Error processor.
+	 *
+	 * @var \Softonic\LogFormatter\Error\Processor
+	 */
+	protected $error_processor;
+
+	/**
 	 * Initialize collector.
 	 *
 	 * @param \Softonic\LogFormatter\Container $container Dependency injection container.
@@ -45,6 +52,7 @@ class Collector
 	public function __construct( Container $container )
 	{
 		$this->container = $container;
+		$this->error_processor = $container['error_processor'];
 	}
 
 	/**
@@ -58,11 +66,10 @@ class Collector
 	{
 		$this->container['log_reader_path'] = $path;
 		$reader = $this->container['log_reader'];
-		$error_processor = $this->container['error_processor'];
 
 		while ( $error = $reader->getNextError() )
 		{
-			$error_processor->addErrorToFile( $error, $package, $severity );
+			$this->error_processor->addErrorToFile( $error, $package, $severity );
 		}
 	}
 
@@ -74,7 +81,7 @@ class Collector
 	public function write( $file_path )
 	{
 		file_put_contents( $file_path, static::FILE_HEADER );
-		foreach ( $this->container['error_processor']->getFiles() as $file )
+		foreach ( $this->error_processor->getFiles() as $file )
 		{
 			$file->write( $file_path );
 		}

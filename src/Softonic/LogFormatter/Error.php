@@ -59,24 +59,15 @@ class Error
 	protected $source;
 
 	/**
-	 * File where this Error happened.
-	 *
-	 * @var \Softonic\LogFormatter\File
-	 */
-	protected $file;
-
-	/**
 	 * Initialize error.
 	 *
-	 * @param \Softonic\LogFormatter\File $file File where this error happened.
 	 * @param integer $line Error line.
 	 * @param string $severity Error severity.
 	 * @param string $message Error message.
 	 * @param string $source Error source.
 	 */
-	public function __construct( File $file, $line, $severity, $message, $source )
+	public function __construct( $line, $severity, $message, $source )
 	{
-		$this->file = $file;
 		$this->line = $line;
 		$this->severity = $severity;
 		$this->message = $message;
@@ -91,16 +82,6 @@ class Error
 	public function increaseCount( $count = 1 )
 	{
 		$this->count += $count;
-	}
-
-	/**
-	 * Get the Error file.
-	 *
-	 * @return \Softonic\LogFormatter\File
-	 */
-	public function getFile()
-	{
-		return $this->file;
 	}
 
 	/**
