@@ -24,12 +24,13 @@ class SqlPropertyParser implements PropertyParser
 	 */
 	public function getMessage( $error )
 	{
-		if ( preg_match( '/\nERROR in (.*?)\nQUERY/s', $error, $matches ) )
+		if ( preg_match( '/\n(?:ERROR in (.*?)\nQUERY:|(No available servers .*?))\n/s', $error, $matches ) )
 		{
 			return $matches[1] . ' in ' . $this->getSourceFile( $error ) . ' on line ' . $this->getLine( $error );
 		}
 
 		trigger_error( "Could not parse error message from:\n $error\n", E_USER_WARNING );
+		return $error;
 	}
 
 	/**
@@ -46,6 +47,7 @@ class SqlPropertyParser implements PropertyParser
 		}
 
 		trigger_error( "Could not parse error line from:\n $error\n", E_USER_WARNING );
+		return 0;
 	}
 
 	/**
