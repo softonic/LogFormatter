@@ -42,7 +42,7 @@ class SqlPropertyParserTest extends PropertyParserAbstractTest
 
 		$error = <<<'ERROR'
 USER AGENT: 'test/1.34.1'
-ERROR in 'testdb': Lock wait timeout exceeded; try restarting transaction
+ERROR:ERROR in 'testdb': Lock wait timeout exceeded; try restarting transaction
 QUERY:
 /* Save */
 INSERT INTO
@@ -58,7 +58,7 @@ ERROR;
 		$data[] = array(
 			$error,
 			array(
-				'message' => '\'testdb\': Lock wait timeout exceeded; try restarting transaction in @PATH_CODE@/test.php on line 66',
+				'message' => 'ERROR in \'testdb\': Lock wait timeout exceeded; try restarting transaction in @PATH_CODE@/test.php on line 66',
 				'line' => 66,
 				'source' => '@PATH_CODE@/test.php'
 			)
@@ -66,14 +66,7 @@ ERROR;
 
 		$error = <<<'ERROR'
 USER AGENT: 'test/1.34.1'
-ERROR in 'testdb2': Lock wait timeout exceeded; try restarting transaction
-QUERY:
-/* Save */
-INSERT INTO
-	test
-SET
-	test_field = NOW()
-
+ERROR:ERROR in 'testdb2': Lock wait timeout exceeded; try restarting transaction
 TRACE:
 #0 @PATH_CODE@/core/db.class.php(225): Db->query('INSERT INTO...', 'Save')
 #1 @PATH_CODE@/test2.php(137): TestModel->saveTest(0)
@@ -82,7 +75,7 @@ ERROR;
 		$data[] = array(
 			$error,
 			array(
-				'message' => '\'testdb2\': Lock wait timeout exceeded; try restarting transaction in @PATH_CODE@/test2.php on line 137',
+				'message' => 'ERROR in \'testdb2\': Lock wait timeout exceeded; try restarting transaction in @PATH_CODE@/test2.php on line 137',
 				'line' => 137,
 				'source' => '@PATH_CODE@/test2.php'
 			)
