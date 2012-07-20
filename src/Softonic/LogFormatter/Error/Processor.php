@@ -107,7 +107,8 @@ class Processor
 		$parser->getLine( $error ),
 			$severity,
 			$message,
-			$source
+			$source,
+			$error
 		);
 	}
 
