@@ -92,7 +92,11 @@ class Reader
 			&& ( $line = fgets( $this->file_handler ) ) !== false
 		);
 
-		return utf8_encode( $buffer );
+		$buffer = utf8_encode( $buffer );
+
+		// Remove control characters except tab and line endings: \r \n.
+		$buffer = preg_replace( '/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/s', '', $buffer );
+		return $buffer;
 	}
 
 	/**
