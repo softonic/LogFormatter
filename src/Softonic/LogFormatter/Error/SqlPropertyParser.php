@@ -106,5 +106,16 @@ class SqlPropertyParser implements PropertyParser
 		list( , $trace ) = preg_split( '@\nTRACE:\n@s', $error );
 		return explode( "\n", $trace );
 	}
+
+	/**
+	 * Gives the severity of the Error.
+	 *
+	 * @param string $error Complete Error string.
+	 * @return string
+	 */
+	public function getSeverity( $error )
+	{
+		return \Softonic\LogFormatter\Error::SEVERITY_ERROR;
+	}
 }
 ?>

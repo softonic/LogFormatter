@@ -63,9 +63,8 @@ class Processor
 	 *
 	 * @param string $error_message Error message.
 	 * @param string $package Package used to classify errors.
-	 * @param string $severity Severity of the error.
 	 */
-	public function addErrorToFile( $error_message, $package, $severity = 'error' )
+	public function addErrorToFile( $error_message, $package )
 	{
 		$error_message = htmlspecialchars( $error_message );
 		$error_message = $this->replacePaths( $error_message );
@@ -73,7 +72,7 @@ class Processor
 		$parser = $this->getErrorPropertyParser();
 
 		$file = $this->getFile( $parser, $error_message );
-		$error = $this->getError( $parser, $error_message, $severity, $package );
+		$error = $this->getError( $parser, $error_message, $package );
 
 		if ( $parser instanceof HasCount )
 		{
@@ -88,12 +87,11 @@ class Processor
 	 *
 	 * @param \Softonic\LogFormatter\Error\PropertyParser $parser Parser.
 	 * @param string $error Error message.
-	 * @param string $severity Severity.
 	 * @param string $package Package.
 	 *
 	 * @return \Softonic\LogFormatter\Error
 	 */
-	protected function getError( \Softonic\LogFormatter\Error\PropertyParser $parser, $error, $severity, $package )
+	protected function getError( \Softonic\LogFormatter\Error\PropertyParser $parser, $error, $package )
 	{
 		$message = $parser->getMessage( $error );
 		$source = $this->getSource( $message, $package, $parser->getType( $error ) );
@@ -105,7 +103,7 @@ class Processor
 
 		return $this->errors[$source] = new $this->container['error_class'](
 		$parser->getLine( $error ),
-			$severity,
+			$parser->getSeverity( $error ),
 			$message,
 			$source,
 			$error

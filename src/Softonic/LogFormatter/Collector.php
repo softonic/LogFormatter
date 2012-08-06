@@ -60,16 +60,15 @@ class Collector
 	 *
 	 * @param string $path Log file path.
 	 * @param string $package Package.
-	 * @param string $severity Severity.
 	 */
-	public function collectFromLog( $path, $package, $severity = 'error' )
+	public function collectFromLog( $path, $package )
 	{
 		$this->container['log_reader_path'] = $path;
 		$reader = $this->container['log_reader'];
 
 		while ( $error = $reader->getNextError() )
 		{
-			$this->error_processor->addErrorToFile( $error, $package, $severity );
+			$this->error_processor->addErrorToFile( $error, $package );
 		}
 	}
 

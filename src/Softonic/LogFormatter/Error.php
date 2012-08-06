@@ -17,6 +17,27 @@ namespace Softonic\LogFormatter;
 class Error
 {
 	/**
+ 	 * Error severity, warning level.
+	 *
+	 * @var string
+	 */
+	const SEVERITY_WARNING = 'warning';
+
+	/**
+	 * Error severity, error level.
+	 *
+	 * @var string
+	 */
+	const SEVERITY_ERROR = 'error';
+
+	/**
+	 * Error severity, notice level.
+	 *
+	 * @var string
+	 */
+	const SEVERITY_NOTICE = 'notice';
+
+	/**
 	 * Error output format.
 	 *
 	 * @var string

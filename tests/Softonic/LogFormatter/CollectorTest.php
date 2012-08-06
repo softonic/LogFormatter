@@ -50,7 +50,6 @@ class CollectorTest extends PHPUnit_Framework_TestCase
 			->method( 'addErrorToFile' )
 			->with(
 				$this->equalTo( 'error 1' ),
-				$this->anything(),
 				$this->anything()
 			)
 			->will( $this->returnValue( null ) );
@@ -59,7 +58,6 @@ class CollectorTest extends PHPUnit_Framework_TestCase
 			->method( 'addErrorToFile' )
 			->with(
 				$this->equalTo( 'error 2' ),
-				$this->anything(),
 				$this->anything()
 			)
 			->will( $this->returnValue( null ) );

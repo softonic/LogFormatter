@@ -51,5 +51,13 @@ interface PropertyParser
 	 * @return string
 	 */
 	public function getSourceFile( $error );
+
+	/**
+	 * Gives the severity of the Error.
+	 *
+	 * @param string $error Complete Error string.
+	 * @return string
+	 */
+	public function getSeverity( $error );
 }
 ?>

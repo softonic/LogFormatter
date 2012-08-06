@@ -96,5 +96,16 @@ class PhpPropertyParser implements PropertyParser
 		trigger_error( "Could not parse {$property} from:\n$error\n", E_USER_WARNING );
 		return false;
 	}
+
+	/**
+	 * Gives the severity of the Error.
+	 *
+	 * @param string $error Complete Error string.
+	 * @return string
+	 */
+	public function getSeverity( $error )
+	{
+		return \Softonic\LogFormatter\Error::SEVERITY_ERROR;
+	}
 }
 ?>
